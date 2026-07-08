@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HoneyComb™ Alpha — Start Game</title>
+  <style>
+    :root {
+      --dark:#261707;
+      --honey:#f6b733;
+      --gold:#d99000;
+      --cream:#fff8df;
+      --card:#fffdf5;
+      --soft:#fff0b8;
+      --line:#e5be63;
+      --shadow: rgba(63, 39, 0, .22);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.85), transparent 35%),
+        linear-gradient(135deg, #fff7d1, #ffd56c);
+      color: var(--dark);
+      line-height: 1.45;
+    }
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+    .card {
+      background: rgba(255,255,255,.9);
+      border: 2px solid var(--line);
+      border-radius: 26px;
+      padding: 22px;
+      box-shadow: 0 10px 28px var(--shadow);
+      margin: 14px 0;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      text-align: center;
+      letter-spacing: -.5px;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin: 0 0 12px;
+    }
+    .tagline {
+      text-align: center;
+      font-weight: 800;
+      margin: 8px 0 18px;
+      font-size: 1.05rem;
+    }
+    .intro {
+      background: var(--cream);
+      border-left: 6px solid var(--honey);
+      border-radius: 14px;
+      padding: 14px;
+      margin: 16px 0;
+      font-size: 1rem;
+    }
+    .tiny {
+      font-size: .92rem;
+      opacity: .9;
+    }
+    .question {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+    label {
+      display: block;
+      background: var(--soft);
+      border: 1px solid #efd179;
+      border-radius: 14px;
+      margin: 9px 0;
+      padding: 11px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    label:hover, label:focus-within {
+      background: #ffe796;
+    }
+    input[type="radio"] {
+      transform: scale(1.18);
+      margin-right: 8px;
+    }
+    textarea, input[type="text"] {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      padding: 11px;
+      font-size: 1rem;
+      background: #fffefa;
+      resize: vertical;
+    }
+    textarea { min-height: 78px; }
+    .angle {
+      margin: 13px 0 6px;
+      font-weight: 800;
+    }
+    button {
+      width: 100%;
+      padding: 15px 18px;
+      border: 0;
+      border-radius: 16px;
+      background: var(--dark);
+      color: white;
+      font-weight: 900;
+      font-size: 1rem;
+      margin: 9px 0;
+      cursor: pointer;
+    }
+    button.secondary {
+      background: var(--gold);
+      color: var(--dark);
+    }
+    button.light {
+      background: #fff4bf;
+      color: var(--dark);
+      border: 1px solid var(--line);
+    }
+    button:active { transform: translateY(1px); }
+    .hidden { display: none; }
+    .progress {
+      text-align: center;
+      font-weight: 800;
+      margin: 8px 0 14px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: #fffdf4;
+      border: 1px dashed var(--gold);
+      border-radius: 18px;
+      padding: 14px;
+      min-height: 180px;
+      font-size: .95rem;
+    }
+    .footer {
+      text-align: center;
+      font-weight: 900;
+      margin-top: 18px;
+    }
+    .note {
+      background: #fff5c9;
+      border-radius: 14px;
+      padding: 12px;
+      margin: 12px 0;
+      border: 1px solid var(--line);
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <section id="welcome" class="card">
+    <h1>🎮🍯 HoneyComb™ Alpha</h1>
+    <div class="tagline">Start Game · TRY. NOTICE. ADJUST. 🔺</div>
+
+    <div class="intro">
+      This is a tiny ChatGPT experiment that starts learning how you operate based on how you answer.
+      It is not a personality test. Your answers are not a label. They are angles. 🐝
+    </div>
+
+    <p><b>How it works:</b></p>
+    <p>Answer 3 quick questions. Add extra context only if you want. Then copy your results and send them back to Bethany.</p>
+
+    <p class="tiny">Don’t overthink it. First answer that feels closest is perfect. If none fit, use <b>MY ANGLE</b>.</p>
+
+    <button onclick="showQuiz()">🐝 Start Game</button>
+  </section>
+
+  <section id="quizCard" class="card hidden">
+    <h1>🎮 Start Game</h1>
+    <div class="progress">3 quick questions 👀</div>
+
+    <div class="question">
+      <h2>🎯 1. What’s something you keep meaning to do... but don’t?</h2>
+      <label><input type="radio" name="q1" value="A — Start something">A — Start something</label>
+      <label><input type="radio" name="q1" value="B — Finish something">B — Finish something</label>
+      <label><input type="radio" name="q1" value="C — Get my life more organized">C — Get my life more organized</label>
+      <label><input type="radio" name="q1" value="D — Make a change I’ve been putting off">D — Make a change I’ve been putting off</label>
+      <label><input type="radio" name="q1" value="E — I don’t even know 😂">E — I don’t even know 😂</label>
+      <div class="angle">🔺 MY ANGLE:</div>
+      <textarea id="a1" placeholder="Optional: say it your way..."></textarea>
+    </div>
+
+    <div class="question">
+      <h2>👀 2. When somebody gets you wrong, what do you usually do?</h2>
+      <label><input type="radio" name="q2" value="A — Correct them">A — Correct them</label>
+      <label><input type="radio" name="q2" value="B — Say, “Yeah... but...”">B — Say, “Yeah... but...”</label>
+      <label><input type="radio" name="q2" value="C — Explain it a different way">C — Explain it a different way</label>
+      <label><input type="radio" name="q2" value="D — Give up explaining 😂">D — Give up explaining 😂</label>
+      <label><input type="radio" name="q2" value="E — I usually realize later they got me wrong">E — I usually realize later they got me wrong</label>
+      <div class="angle">🔺 MY ANGLE:</div>
+      <textarea id="a2" placeholder="Optional: what actually happens?"></textarea>
+    </div>
+
+    <div class="question">
+      <h2>🍯 3. What do you wish ChatGPT was better at helping you with?</h2>
+      <label><input type="radio" name="q3" value="A — Getting started">A — Getting started</label>
+      <label><input type="radio" name="q3" value="B — Staying on track">B — Staying on track</label>
+      <label><input type="radio" name="q3" value="C — Organizing my thoughts">C — Organizing my thoughts</label>
+      <label><input type="radio" name="q3" value="D — Figuring out what actually works for me">D — Figuring out what actually works for me</label>
+      <label><input type="radio" name="q3" value="E — I don’t know yet 👀">E — I don’t know yet 👀</label>
+      <div class="angle">🔺 MY ANGLE:</div>
+      <textarea id="a3" placeholder="Optional: what would actually help?"></textarea>
+    </div>
+
+    <button onclick="showResults()">🍯 Build My Answers</button>
+    <button class="light" onclick="showWelcome()">← Back</button>
+  </section>
+
+  <section id="resultsCard" class="card hidden">
+    <h1>🐝 Answers Built</h1>
+    <div class="note">
+      Tap <b>Copy Answers</b>, then send the copied text back to Bethany.
+    </div>
+
+    <button onclick="copyAnswers()">📋 Copy Answers</button>
+    <button class="secondary" onclick="showQuiz()">✏️ Edit Answers</button>
+
+    <pre id="output"></pre>
+
+    <div class="footer">🎮 Your game adapts from here. 🔺</div>
+  </section>
+
+</div>
+
+<script>
+function showWelcome(){
+  document.getElementById("welcome").classList.remove("hidden");
+  document.getElementById("quizCard").classList.add("hidden");
+  document.getElementById("resultsCard").classList.add("hidden");
+}
+function showQuiz(){
+  document.getElementById("welcome").classList.add("hidden");
+  document.getElementById("quizCard").classList.remove("hidden");
+  document.getElementById("resultsCard").classList.add("hidden");
+  window.scrollTo(0,0);
+}
+function showResults(){
+  buildAnswers();
+  document.getElementById("welcome").classList.add("hidden");
+  document.getElementById("quizCard").classList.add("hidden");
+  document.getElementById("resultsCard").classList.remove("hidden");
+  window.scrollTo(0,0);
+}
+function selected(name) {
+  const picked = document.querySelector('input[name="' + name + '"]:checked');
+  return picked ? picked.value : "No answer selected";
+}
+function clean(id) {
+  const val = document.getElementById(id).value.trim();
+  return val ? val : "No extra angle added";
+}
+function buildAnswers() {
+  const text =
+`🎮🍯 HONEYCOMB™ ALPHA — START GAME ANSWERS
+
+🎯 1. What’s something you keep meaning to do... but don’t?
+Answer: ${selected("q1")}
+🔺 MY ANGLE: ${clean("a1")}
+
+👀 2. When somebody gets you wrong, what do you usually do?
+Answer: ${selected("q2")}
+🔺 MY ANGLE: ${clean("a2")}
+
+🍯 3. What do you wish ChatGPT was better at helping you with?
+Answer: ${selected("q3")}
+🔺 MY ANGLE: ${clean("a3")}
+
+🐝 HoneyComb™ Alpha
+TRY. NOTICE. ADJUST.
+
+Send back to Bethany.`;
+  document.getElementById("output").textContent = text;
+}
+async function copyAnswers() {
+  buildAnswers();
+  const text = document.getElementById("output").textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+    alert("Copied! Send it back to Bethany. 🐝");
+  } catch (err) {
+    alert("Copy didn’t work automatically. Press and hold the answer box to copy.");
+  }
+}
+</script>
+</body>
+</html>
